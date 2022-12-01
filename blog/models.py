@@ -8,9 +8,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
-    def get_absolute_url(self) :
-        return f'blog/category/{self.slug}'
+
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}/'
 
     class Meta_:
         verbose_name_plural = 'Categories'
