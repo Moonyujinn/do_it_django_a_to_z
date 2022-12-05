@@ -8,6 +8,8 @@ class TestView(TestCase) :
         self.client = Client()
         self.user_trump = User.objects.create_user(username='trump', password='somepassword')
         self.user_obama = User.objects.create_user(username='obama', password='somepassword')
+        self.user_obama.is_staff = True
+        self.user_obama.save()
 
         # 카테고리
         self.category_programming = Category.objects.create(name='programming', slug='programming')
@@ -189,11 +191,15 @@ class TestView(TestCase) :
             response = self.client.get('/blog/create_post/')
             self.assertNotEqual(response.status_code, 200)
 
-            # 로그인을 한다.
+            # staff가 아닌 trump가 로그인을 한다.
             self.client.login(username='trump', password='somepassword')
-
             response = self.client.get('/blog/create_post/')
-            self.assertEqual(response.content, 'html.parser')
+            self.assertNotEqual(response.status_code, 200)
+
+            # staff인 obama로그인을 한다.
+            self.client.login(username='obama', password='somepassword')
+            response = self.client.get('/blog/create_post/')
+            self.assertEqual(response.status_code, 200)
             soup = BeautifulSoup(response.content, 'html.parser')
 
             self.assertEqual('Create Post - Blog', soup.title.text)
@@ -207,7 +213,6 @@ class TestView(TestCase) :
                     'content': "Post Form 페이지를 만듭시다.",
                 }
             )
-            self.assertEqual(Post.objects.count(), 4)
             last_post = Post.objects.last()
             self.assertEqual(last_post.title, "Post Form 만들기")
-            self.assertEqual(last_post.author.username, "trump")
+            self.assertEqual(last_post.author.username, "obama")
