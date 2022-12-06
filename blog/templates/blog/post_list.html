@@ -25,7 +25,7 @@
                 <img class="card-img-top" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image" />
               {% endif %}
           </a>
-          <div class="card-body">
+              <p class="card-text">{{ p.get_content_markdown | truncatewords_html:45 | safe }}</p>
               {% if p.tags.exists %}
                 <i class="fas fa-tags"></i>
                 {% for tag in p.tags.iterator %}
