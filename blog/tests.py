@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 
 class TestView(TestCase) :
     def setUp(self):
@@ -121,6 +121,12 @@ class TestView(TestCase) :
 
         # 포스트 상세 페이지 테스트 코드
         def test_post_detail(self):
+
+            # comment area
+            comments_area = soup.find('div', id='comment-area')
+            comment_001_area = comments_area.find('div', id='comment-1')
+            self.assertIn(self.comment_001.author.username, comment_001_area.text)
+            self.assertIn(self.comment_001.content, comment_001_area.text)
 
             # 1.2 그 포스트의 url은 '/blog/1/'이다.
             self.assertEqual(self.post_001.get_absolute_url(), '/blog/1/')
@@ -278,3 +284,9 @@ class TestView(TestCase) :
             self.assertIn('한글 태그', main_area.text)
             self.assertIn('some tag', main_area.text)
             self.assertNotIn('python', main_area.text)
+
+            self.comment_001 = Comment.objects.create(
+                post = self.post_001,
+                author = self.user_obama,
+                content = '첫 번째 댓글입니다. '
+            )
