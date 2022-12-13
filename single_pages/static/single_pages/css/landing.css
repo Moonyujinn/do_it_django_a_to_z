@@ -1,5 +1,5 @@
 body {
-    background-color: url('/do_it_django_a_to_z/single_pages/static/single_pages/images/배경이미지.jpg') no-repeat center center fixed;
+    background: url('/static/single_pages/images/background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

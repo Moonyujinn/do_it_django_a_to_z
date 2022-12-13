@@ -1,18 +1,126 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>개발자 강명석입니다.</title>
+    <title>About 명석</title>
+
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/about_me.css' %}" media="screen">
+
 </head>
 <body>
-<nav>
-    <a href="/blog/">Blog</a>
-    <a href="/about_me/">About me</a>
-</nav>
 
-<h1>안녕하세요. 강명석입니다.</h1>
-<h2>이력</h2>
-<h2>Portfolio</h2>
-<h3>아직 공사중입니다.</h3>
+{% include 'blog/navbar.html' %}
+
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>안녕하세요. 강명석입니다.</h1>
+                <br/>
+                <p class="lead">
+                    음악과 컴퓨터와 수영을 좋아합니다.<br/>
+                    데이터 분석으로 돈을 벌고, 퇴근 후에는 운동을 하거나 책을 쓰면서 지냅니다.
+                </p>
+
+                <ul>
+                    <li>WORK EXPERIENCE</li>
+                    <ul>
+                        <li>크고 좋은 회사 - 빅데이터 분석 (2019.10 ~)</li>
+                        <li>모모공공기관 (2016.02 ~ 2019.09)</li>
+                    </ul>
+                    <li>EDUCATION</li>
+                    <ul>
+                        <li>공학박사, 장고공학(Django Engineering), 파이썬대학교 (2010.03 ~ 2015.09)</li>
+                        <li>공학박사, 장고공학(Django Engineering), 파이썬대학교 (2007.09 ~ 2009.08)</li>
+                        <li>공학박사, 장고공학(Django Engineering), 파이썬대학교 (2003.03 ~ 2007.08)</li>
+                    </ul>
+                    <li>PUBLISH</li>
+                    <ul>
+                        <li>DO IT DJANGO, 이지스퍼블리싱 (2020)</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <img class="img-fluid" src="{% static 'single/images/my_back.png' %}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light margin-for-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>PORTFOLIO</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#pycon2017">
+                    <img class="card-img-top" src="{% static 'single_pages/images/pycon_sy_2017.png' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">파이썬으로 통계업무 자동화하기 [PYCON 2017]</h5>
+                        <p>Python, Django, Pandas, python-docx로 통계업무 자동화한 내용을 파이콘에서 발표했습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#inflearn_django2">
+                    <img class="card-img-top" src="{% static 'single_pages/images/inflearn_django2.png' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">파이썬 사용자를 위한 웹개발 입문 A to Z Django + Bootstrap</h5>
+                        <p>파이썬 웹 개발에 대한 인프런 동영상 강의입니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#automation_python">
+                    <img class="card-img-top" src="{% static 'single_pages/images/automation_python.png' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">직장인을 위한 프로그래밍 입문과 업무자동화 활용</h5>
+                        <p>파이썬 업부자동화에 대한 인프런 동영상 강의입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal //-->
+<div class="modal fade" id="modal_1" tabindex="-1" role="dialog" aria-labelledby="modal_1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document"></div>
+        <!-- 생략된 부분 시작 //-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_1">츄르 자동 공급장치 개발</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="card-img-top" src="{% static 'single_pages/images/pot_1.jpg' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>Python, Django, Pandas, python-docx 자동화</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- 생략된 부분 끝 //-->
+</div>
+
+<div class="fixed-bottom">
+    {% include 'blog/footer.html' %}
+</div>
+
 </body>
 </html>
